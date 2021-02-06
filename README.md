@@ -1,2 +1,8 @@
-# peeceland
-Peeceland Project – Data Engineering
+# Peeceland Project – Data Engineering
+
+## Team
+
+- Kiesgen de Richter Stanislas
+- Precigout Gabriel
+- Vaio Luca
+
