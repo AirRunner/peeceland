@@ -30,8 +30,8 @@ object ReportGenerator {
     def generateReport(): Gen[Report] = {
         val LAT = ("29.", 4737, 6059)
         val LONG = ("-95.", 1048, 3862)
-        val NAMES = loadData("resources/names.txt")
-        val WORDS = loadData("resources/words.txt")
+        val NAMES = loadData("resources/data/names.txt")
+        val WORDS = loadData("resources/data/words.txt")
 
         for {
             id <- Gen.choose(1, 100)
