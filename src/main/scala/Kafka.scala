@@ -3,6 +3,7 @@ import java.util.Properties
 import scala.collection.JavaConverters._
 import org.apache.kafka.clients.producer._
 import org.apache.kafka.clients.consumer.KafkaConsumer
+//import MongoDB.getMongoDb
 
 object Kafka {
     
@@ -22,11 +23,15 @@ object Kafka {
     def handleMessages(cons: KafkaConsumer[String, String]): Unit = {
         val record = cons.poll(1000).asScala
         record.iterator.foreach(msg => {
-            println(msg.value())
+            // TODO: save to mongo
+            //val db: MongoDatabase = getMongoDb()
             
-            // produce riot alerts
+            // TODO: produce riot alerts
             //kafkaProduce("riot-alerts", dateTime, citizenName + score)
-            kafkaProduce("riot-alerts", "riot-alerts", msg.value()) //testing
+            
+            // Testing
+            kafkaProduce("riot-alerts", "riot-alerts", msg.value())
+            println(msg.value())
         })
         handleMessages(cons)
     }
