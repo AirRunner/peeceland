@@ -1,7 +1,9 @@
-import ReportGenerator.jsonReport
+//import ReportGenerator.jsonReport
+import Kafka.kafkaConsume
 
 object Main {
     def main(args: Array[String]): Unit = {
-        println(jsonReport())
+        //val droneReport = jsonReport()
+        kafkaConsume("drone-reports")
     }
 }
