@@ -64,4 +64,16 @@ object ReportGenerator {
         val report: Report = generateReport().sample.getOrElse(Report())
         produceReport(report)
     }
+    
+    def nextReport(nb: Int): Unit = nb match {
+        case nb if (nb == 0) => None
+        case nb if (nb < 0) => simulateDrone(nb)
+        case _ => simulateDrone(nb - 1)
+    }
+    
+    def simulateDrone(nb: Int) = {
+        sendReport()
+        Thread.sleep(5000) // 1mn
+        nextReport(nb)
+    }
 }

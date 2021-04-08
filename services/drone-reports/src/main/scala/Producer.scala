@@ -1,9 +1,5 @@
-import java.util
 import java.util.Properties
-import java.io.Serializable
-import scala.collection.JavaConverters._
 import org.apache.kafka.clients.producer._
-import org.apache.kafka.clients.consumer.KafkaConsumer
 import net.liftweb.json.DefaultFormats
 import net.liftweb.json.Serialization.write
 import ReportGenerator.Report
