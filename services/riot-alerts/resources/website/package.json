@@ -1,0 +1,11 @@
+{
+  "name": "peaceland-riot-alerts",
+  "version": "1.0",
+  "scripts": {
+    "start": "node app"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  }
+}
