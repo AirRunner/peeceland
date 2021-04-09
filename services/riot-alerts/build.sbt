@@ -1,4 +1,4 @@
-name := "drone-reports"
+name := "riot-alerts"
 
 version := "1.0"
 
