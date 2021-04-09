@@ -1,0 +1,7 @@
+{
+    "host": "devcluster.4jen4.mongodb.net",
+    "options": "retryWrites=true&w=majority",
+    "database": "peaceland",
+    "username": "peaceland",
+    "password": "9CmNkjVzR1e1xR0v"
+}
