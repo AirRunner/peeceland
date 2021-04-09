@@ -1,5 +1,5 @@
 import scala.io.Source
-import scala.collection.Seq
+import scala.collection.immutable.Set
 import java.time.LocalDateTime
 import org.scalacheck.Gen
 import Producer.produceReport
@@ -15,8 +15,8 @@ object ReportGenerator {
         watcherId: Int = 0,
         latitude: String = "0",
         longitude: String = "0",
-        citizens: Seq[Citizen] = Nil,
-        words: Seq[String] = Nil
+        citizens: Set[Citizen] = Set(),
+        words: Set[String] = Set()
     )
 
     def loadData(path: String): List[String] = {
@@ -57,7 +57,7 @@ object ReportGenerator {
             
             wds <- Gen.pick(nb_wds, WORDS)
             
-        } yield Report(LocalDateTime.now, id, lat, long, cit, wds)
+        } yield Report(LocalDateTime.now, id, lat, long, cit.toSet, wds.toSet)
     }
 
     def sendReport() = {
@@ -73,7 +73,7 @@ object ReportGenerator {
     
     def simulateDrone(nb: Int) = {
         sendReport()
-        Thread.sleep(5000) // 1mn
+        Thread.sleep(10000) // 1mn
         nextReport(nb)
     }
 }

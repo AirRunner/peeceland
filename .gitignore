@@ -3,3 +3,5 @@
 
 target/
 project/
+
+node_modules/

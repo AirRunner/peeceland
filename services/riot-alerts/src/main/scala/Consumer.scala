@@ -2,12 +2,13 @@ import java.util
 import java.util.Properties
 import scala.collection.JavaConverters._
 import org.apache.kafka.clients.consumer.KafkaConsumer
+import Requests.post
 
 object Consumer {
     def handleMessages(cons: KafkaConsumer[String, String]): Unit = {
         val record = cons.poll(500).asScala
         record.iterator.foreach(msg => {
-            println(msg.value())
+            post(msg.value())
         })
         handleMessages(cons)
     }
