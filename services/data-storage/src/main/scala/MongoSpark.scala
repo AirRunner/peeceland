@@ -2,11 +2,6 @@ import com.mongodb.spark._
 
 object MongoSpark {
 
-  case class students_cc(id: Int,
-                         year_graduated: String,
-                         courses_registered: List[cid_sem],
-                         name: String)
-  case class cid_sem(cid: String, sem: String)
 
   def main(args: Array[String]): Unit = {
     //Start the Spark context
