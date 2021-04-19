@@ -1,0 +1,6 @@
+services:
+    kafka:
+        build: .
+        ports:
+            - "9092:9092"
+        mem_limit: 2048m

@@ -1,0 +1,4 @@
+services:
+    sbt:
+        build: .
+        mem_limit: 2048m

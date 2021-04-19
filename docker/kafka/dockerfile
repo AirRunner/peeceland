@@ -1,0 +1,12 @@
+FROM openjdk:latest
+
+# Create app directory
+RUN mkdir -p /home/app
+WORKDIR /home/app
+
+# Bundle app source
+COPY ./app/ /home/app/
+
+# Launch kafka
+EXPOSE 9092
+ENTRYPOINT ["bash", "/home/app/kafka-start.sh"]

@@ -1,0 +1,11 @@
+FROM hseeberger/scala-sbt:latest
+
+# Create app directory
+RUN mkdir -p /home/app
+WORKDIR /home/app
+
+# Bundle app source (ex: riot alerts project)
+COPY ./riot-alerts /home/app
+
+# Run project
+CMD [ "sbt", "run" ]

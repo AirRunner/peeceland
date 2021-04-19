@@ -1,0 +1,6 @@
+services:
+    node:
+        build: .
+        ports:
+            - "3000:3000"
+        mem_limit: 256m
