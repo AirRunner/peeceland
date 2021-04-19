@@ -3,7 +3,6 @@ import scala.collection.immutable.Set
 import org.apache.kafka.clients.producer._
 import net.liftweb.json.DefaultFormats
 import net.liftweb.json.Serialization.write
-import java.time.LocalDateTime
 import ReportGenerator.Report
 import ReportGenerator.Citizen
 
@@ -22,7 +21,7 @@ object Producer {
     }
     
     case class Alert (
-        dateTime: LocalDateTime = LocalDateTime.now,
+        dateTime: String = "2021-01-01 00:00:00",
         location: String = "0, 0",
         riotCitizens: Set[Citizen] = Set()
     )

@@ -11,8 +11,8 @@ window.onload = function () {
             const peaceScore = document.createElement('td');
             const location = document.createElement('td');
     
-            const tm = message.dateTime.time;
-            time.textContent = tm.hour + ':' + tm.minute + ':' + tm.second;
+            const datetime = new Date(message.dateTime.replaceAll('-', '/'));
+            time.textContent = `${datetime.getHours()}:${datetime.getMinutes()}:${datetime.getSeconds()}`;
             name.textContent = cit.name;
             peaceScore.textContent = cit.peaceScore;
             location.textContent = message.location;

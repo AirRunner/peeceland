@@ -1,17 +1,20 @@
 import scala.io.Source
 import scala.collection.immutable.Set
-import java.time.LocalDateTime
+import java.util.Calendar
+import java.text.SimpleDateFormat
 import org.scalacheck.Gen
 import Producer.produceReport
 
 object ReportGenerator {
+    
+    val fmt = new SimpleDateFormat("YYYY-MM-dd hh:mm:ss")
     
     case class Citizen (
         name: String,
         peaceScore: Int
     )
     case class Report (
-        dateTime: LocalDateTime = LocalDateTime.now,
+        dateTime: String = "2021-01-01 00:00:00",
         watcherId: Int = 0,
         latitude: String = "0",
         longitude: String = "0",
@@ -57,7 +60,7 @@ object ReportGenerator {
             
             wds <- Gen.pick(nb_wds, WORDS)
             
-        } yield Report(LocalDateTime.now, id, lat, long, cit.toSet, wds.toSet)
+        } yield Report(fmt.format(Calendar.getInstance.getTime), id, lat, long, cit.toSet, wds.toSet)
     }
 
     def sendReport() = {
@@ -67,13 +70,13 @@ object ReportGenerator {
     
     def nextReport(nb: Int): Unit = nb match {
         case nb if (nb == 0) => None
-        case nb if (nb < 0) => simulateDrone(nb)
-        case _ => simulateDrone(nb - 1)
+        case nb if (nb < 0) => simulateDrone(nb + 1)
+        case _ => simulateDrone(nb)
     }
     
     def simulateDrone(nb: Int) = {
         sendReport()
-        Thread.sleep(10000) // 1mn
-        nextReport(nb)
+        Thread.sleep(60000) // 1mn
+        nextReport(nb - 1)
     }
 }
