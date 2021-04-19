@@ -13,3 +13,7 @@ services/data-analysis/.bsp/
 services/data-storage/.bsp/
 
 services/riot-alerts/.bsp/
+
+services/drone-reports/.bsp/sbt.json
+
+.vscode/launch.json
