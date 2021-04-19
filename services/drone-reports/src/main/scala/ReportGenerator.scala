@@ -1,6 +1,6 @@
 import scala.io.Source
 import scala.collection.immutable.Set
-import java.util.Calendar
+import java.util.{Date, Calendar}
 import java.text.SimpleDateFormat
 import org.scalacheck.Gen
 import Producer.produceReport
@@ -33,16 +33,16 @@ object ReportGenerator {
         val WORDS = loadData("data/words.txt")
 
         for {
+            dateSpan <- Gen.choose(0, 10364399999L)
+            
             id <- Gen.choose(1, 100)
             
             lat <- Gen.choose(LAT._2, LAT._3)
                     .map(lat => LAT._1 + lat.toString)
-            
             long <- Gen.choose(LONG._2, LONG._3)
                     .map(long => LONG._1 + long.toString)
             
             nb_cit <- Gen.choose(0, 20)
-            
             cit <- Gen.listOfN(
                 nb_cit,
                 Gen.oneOf(NAMES)
@@ -57,10 +57,9 @@ object ReportGenerator {
             )
             
             nb_wds <- Gen.choose(nb_cit, nb_cit * 5)
-            
             wds <- Gen.pick(nb_wds, WORDS)
             
-        } yield Report(fmt.format(Calendar.getInstance.getTime), id, lat, long, cit.toSet, wds.toSet)
+        } yield Report(fmt.format(new Date(1609455600000L + dateSpan)), id, lat, long, cit.toSet, wds.toSet)
     }
 
     def sendReport() = {
@@ -76,7 +75,7 @@ object ReportGenerator {
     
     def simulateDrone(nb: Int) = {
         sendReport()
-        Thread.sleep(60000) // 1mn
+        Thread.sleep(5000) // 5s
         nextReport(nb - 1)
     }
 }
