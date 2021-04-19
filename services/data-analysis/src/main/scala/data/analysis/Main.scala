@@ -8,8 +8,10 @@ object Main {
 
     val df = CsvFromS3.loadCSV()
 
-    df.printSchema()
+
     Analysis1.analysis1(df)
+    Analysis2.analysis2(df)
     Analysis3.WhereAreNotpeacufulPeople(df)
+    df.printSchema()
   }
 }
