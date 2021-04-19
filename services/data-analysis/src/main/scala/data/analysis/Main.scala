@@ -10,5 +10,6 @@ object Main {
 
     df.printSchema()
     Analysis1.analysis1(df)
+    Analysis3.WhereAreNotpeacufulPeople(df)
   }
 }
