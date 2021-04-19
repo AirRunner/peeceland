@@ -10,7 +10,7 @@ object CSV_import {
       .appName("Spark CSV Reader")
       .getOrCreate;
 
-    var df = spark.read
+    val df = spark.read
       .format("csv")
       .option("header", "true")
       .load("resources/FakeCsv.csv")

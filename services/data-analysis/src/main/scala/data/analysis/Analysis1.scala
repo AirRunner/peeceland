@@ -5,9 +5,11 @@ import org.apache.spark.sql.functions._
 
 object Analysis1 {
   def analysis1(df : DataFrame): Unit= {
-    var dff= df.as("dff")
 
-    dff = dff.withColumn("dateTime", substring(col("dateTime"), 0, 10))
+    //conts eveildoer per day
+    val dff= df.as("dff")
+
+    val df1 = dff.withColumn("dateTime", substring(col("dateTime"), 0, 10))
 
 
     dff.groupBy("dateTime")
