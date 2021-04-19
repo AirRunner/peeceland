@@ -7,9 +7,9 @@ object Main {
     BasicConfigurator.configure()
     //var df=CSV_import.loadCSV()
 
-    val df = CsvFromS3.loadCSV()
+    var df = CsvFromS3.loadCSV()
 
     df.printSchema()
-    //Analysis1.analysis1(df)
+    Analysis1.analysis1(df)
   }
 }
