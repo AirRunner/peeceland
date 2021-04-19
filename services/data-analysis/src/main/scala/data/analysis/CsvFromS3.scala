@@ -2,12 +2,15 @@ package data.analysis
 
 
 import com.amazonaws.auth.{AWSStaticCredentialsProvider, BasicAWSCredentials}
+import com.amazonaws.services.s3.model.ListObjectsRequest
 import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
-import org.apache.spark.sql.SparkSession
+
+import concurrent.ExecutionContext.Implicits._
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 
 object CsvFromS3 {
-  def loadCSV(): Unit = {
+  def loadCSV(): DataFrame= {
     val accessKey = "AKIAWZNQF5NHTMTDNSO7"
     val secretKey = "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"
     val bucketName = "peaceland-reports"
@@ -16,12 +19,11 @@ object CsvFromS3 {
     val client: AmazonS3 = AmazonS3ClientBuilder.standard().withRegion("eu-west-2").withCredentials(new AWSStaticCredentialsProvider(credentials)).build()
 
 
-    var folder = client.getObject(bucketName,"data/FakeCsv.csv")
 
-
+     //println(client.listObjects(bucketName).)
     val spark: SparkSession = SparkSession.builder()
       .master("local[1]")
-      .appName("SparkByExamples.com")
+      .appName("loadCsvFromS3")
       .getOrCreate()
     // Replace Key with your AWS account key (You can find this on IAM
     spark.sparkContext
@@ -32,9 +34,10 @@ object CsvFromS3 {
     spark.sparkContext
       .hadoopConfiguration.set("fs.s3a.endpoint", "s3.amazonaws.com")
 
-    val df = spark.read.csv("s3a://peaceland-reports/data/FakeCsv.csv")
-    df.show(false)
-    df.printSchema()
+    val df = spark.read.csv("s3a://peaceland-reports/data/reports.csv")
+    //df.show(false)
+    //df.printSchema()
+    df
   }
 }
 
