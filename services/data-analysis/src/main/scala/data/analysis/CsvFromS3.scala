@@ -33,6 +33,7 @@ object CsvFromS3 {
       .hadoopConfiguration.set("fs.s3a.secret.key", "R+2uyxIEVs2aMwZuRVs9mwrN4N7ccq8X3Yz2pnKQ")
     spark.sparkContext
       .hadoopConfiguration.set("fs.s3a.endpoint", "s3.amazonaws.com")
+    spark.sparkContext.setLogLevel("ERROR")
 
     val df = spark.read
       .format("csv")

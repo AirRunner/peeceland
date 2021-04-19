@@ -12,7 +12,7 @@ object Analysis1 {
     val df1 = dff.withColumn("dateTime", substring(col("dateTime"), 0, 10))
 
 
-    dff.groupBy("dateTime")
-    .agg(count(when(col("peaceScore") <= 3 ,1))).show()
+    df1.groupBy("dateTime")
+    .agg(count(when(col("peaceScore") <= 3 ,1))).sort("dateTime").show()
   }
 }

@@ -9,10 +9,11 @@ object Analysis2 {
     //conts eveildoer per day
     val dff= df.as("dff")
 
-    val df1 = dff.withColumn("dateTime", substring(col("dateTime"), 0, 10))
+    val df1 = dff.withColumn("dateTime", substring(col("dateTime"), 0, 10)).
+      withColumn("watcherId",col("watcherId").cast("int"))
 
 
-    dff.groupBy("watcherId")
-      .agg(count(when(col("peaceScore") <= 3 ,1))).show()
+    df1.groupBy("watcherId")
+      .agg(count(when(col("peaceScore") <= 3 ,1))).sort("watcherId").show()
   }
 }
