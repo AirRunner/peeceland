@@ -34,7 +34,10 @@ object CsvFromS3 {
     spark.sparkContext
       .hadoopConfiguration.set("fs.s3a.endpoint", "s3.amazonaws.com")
 
-    val df = spark.read.csv("s3a://peaceland-reports/data/reports.csv")
+    val df = spark.read
+      .format("csv")
+      .option("header", "true")
+      .load("s3a://peaceland-reports/data/reports.csv")
     //df.show(false)
     //df.printSchema()
     df
