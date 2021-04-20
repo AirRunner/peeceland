@@ -7,6 +7,9 @@ import com.amazonaws.services.s3.{AmazonS3, AmazonS3ClientBuilder}
 
 import concurrent.ExecutionContext.Implicits._
 import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.log4j.Logger
+import org.apache.log4j.Level
+import sun.awt.SunHints.Key
 
 
 object CsvFromS3 {
@@ -20,7 +23,7 @@ object CsvFromS3 {
 
 
 
-     //println(client.listObjects(bucketName).)
+
     val spark: SparkSession = SparkSession.builder()
       .master("local[1]")
       .appName("loadCsvFromS3")
@@ -35,13 +38,24 @@ object CsvFromS3 {
       .hadoopConfiguration.set("fs.s3a.endpoint", "s3.amazonaws.com")
     spark.sparkContext.setLogLevel("ERROR")
 
+
+
     val df = spark.read
       .format("csv")
       .option("header", "true")
       .load("s3a://peaceland-reports/data/reports.csv")
     //df.show(false)
     //df.printSchema()
+
+    //val stock = client.listObjects(bucketName,"data/").getObjectSummaries()
+
+
+
+    //println(stock)
+
     df
   }
+
+
 }
 

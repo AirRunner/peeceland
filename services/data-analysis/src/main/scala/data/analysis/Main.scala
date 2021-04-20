@@ -1,9 +1,17 @@
 package data.analysis
 
-import org.apache.log4j.BasicConfigurator
+import org.apache.log4j.{BasicConfigurator, Level, Logger}
+import org.slf4j.LoggerFactory
 
 object Main {
   def main(args: Array[String]): Unit = {
+    Logger.getLogger("org").setLevel(Level.OFF)
+    Logger.getLogger("akka").setLevel(Level.OFF)
+    Logger.getLogger("io").setLevel(Level.OFF)
+    Logger.getLogger("com").setLevel(Level.OFF)
+
+
+
     BasicConfigurator.configure()
 
 
