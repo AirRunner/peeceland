@@ -18,14 +18,13 @@ object Analysis4 {
       to_date(col("dateTime"),"yyyy-MM-dd").as("to_date")
     )
 
-    df1.withColumn("dateTime_Ts",
-      to_timestamp(col("input_timestamp")))
+    val dfWeek = df1.withColumn("dateTime_Ts",
+      to_timestamp(col("dateTime")))
       .withColumn("week_day_number", date_format(col("dateTime_Ts"), "u"))
       .withColumn("week_day_abb", date_format(col("dateTime_Ts"), "E"))
-      .show(false)
 
-    df1.groupBy("week_day_number")
-      .agg(mean(when(col("peaceScore") <= 3 ,1))).sort("week_day_number").show()
+    dfWeek.groupBy("week_day_number")
+      .agg(mean(col("peaceScore"))).sort("week_day_number").show()
 
   }
 }

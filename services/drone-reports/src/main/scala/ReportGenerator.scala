@@ -75,7 +75,7 @@ object ReportGenerator {
     
     def simulateDrone(nb: Int) = {
         sendReport()
-        Thread.sleep(5000) // 5s
+        Thread.sleep(10000) // 5s
         nextReport(nb - 1)
     }
 }

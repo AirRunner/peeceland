@@ -37,6 +37,9 @@ object CsvFromS3 {
     spark.sparkContext
       .hadoopConfiguration.set("fs.s3a.endpoint", "s3.amazonaws.com")
     spark.sparkContext.setLogLevel("ERROR")
+    
+    // Legacy datetime parser
+    spark.conf.set("spark.sql.legacy.timeParserPolicy","LEGACY")
 
 
 
