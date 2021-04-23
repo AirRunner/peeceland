@@ -22,6 +22,7 @@ object Main {
     Analysis1.analysis1(df)
     Analysis2.analysis2(df)
     Analysis3.WhereAreEvilDoers(df)
+    Analysis4.analysis4(df)
     df.printSchema()
   }
 }
